@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-4.6.2-dist/css/bootstrap.min.css' %}"/>
+
+    <style>
+        body{
+            {#background-image: url("../../static/img/rose.jpg");#}
+            background-size: cover;
+            background-color: #1c7430;
+        }
+        #main{
+            width: 26%;
+            height: 40%;
+            /*border: 1px solid #ff0000;*/
+            background-color: white;
+            opacity:0.9;/*透明度 0-1*/
+            border-radius: 10px;
+            position: absolute;
+            right: 37%;
+            top: 30%;
+        }
+        h1{
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-left: 20px;
+        }
+        .register{
+            margin-left: 20px;
+            color:silver;
+            font-size: 15px;
+        }
+        a{
+            text-decoration: none;/*去掉文本线*/
+        }
+        .p1{
+            line-height: 50px;
+            text-align: center;
+        }
+        .inp0{
+            width: 360px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: aliceblue;
+            border: 1px solid white;
+            outline: none;/*获得焦点时无任何显示*/
+            text-indent: 1em;/*缩进*/
+            font-size: 15px;
+        }
+        .login{
+            width: 420px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid white;
+            background-color: skyblue;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <form action="/user/login" method="post">
+        {% csrf_token %}
+        <div id="main">
+            <h1>欢迎登录</h1>
+            <p class="register">没有账号？<a href="/user/register">注册</a></p>
+            <p class="p1">
+                用户名:<input type="text" name="username" placeholder="请输入用户名" class="inp0" aria-label="user">
+            </p>
+            <p class="p1">
+                密&emsp;码:<input type="password" name="password" placeholder="请输入密码" class="inp0" aria-label="pwd">
+            </p>
+            <p class="p1">
+                <button type="submit" class="login">登录</button>
+            </p>
+        </div>
+    </form>
+    <script rel="script" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script rel="script" src="{% static 'plugins/bootstrap-4.6.2-dist/js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>

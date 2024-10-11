@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>每周总结</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-4.6.2-dist/css/bootstrap.min.css' %}" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="height: 50px">
+            <span class="navbar-brand"><img src="{% static 'img/icon.ico' %}" width="20" height="20" alt="...">农业新闻</span>
+            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarScroll">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-secondary"><a href="/sum_week/" style="color: #3c3c3c">每周总结</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/agdaily/" style="color: #3c3c3c">Agdaily</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/agriculture/" style="color: #3c3c3c">Agriculture</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/agropages/" style="color: #3c3c3c">Agropages</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/agupdate/" style="color: #3c3c3c">Agupdate</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/asiapathways/" style="color: #3c3c3c">Asiapathways</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/bbc/" style="color: #3c3c3c">Bbc</a></button>
+                </div>
+                <form class="d-flex">
+                    <input class="form-control mr-2" type="text" placeholder="Search" aria-label="Search" name="search" id="search" value="{{ search_data }}">
+                    <button class="btn btn-outline-success" type="submit" style="width: 100px">搜索</button>
+                </form>
+            </div>
+        </nav>
+        <table class="table table-striped table-hover table-bordered" style="height: 25px">
+            <thead class="text-center">
+                <tr><th></th></tr>
+                <tr><th></th></tr>
+                <tr class="text-center">
+                    <th style="width: 5%">日期</th>
+                    <th>内容</th>
+                </tr>
+            </thead>
+            <tbody class="text-center" style="width: 30px">
+                {% for e in all_data %}
+                    <tr>
+                        <td style="font-size: 15px" class="align-middle">{{ e.created_at }}</td>
+                        <td style="font-size: 15px"  class="align-middle text-left">
+                            {% for p in e.content %}
+                                <p style="text-indent: 2em">{{ p }}</p>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <nav><ul class="pagination">{{ page_html_string }}</ul></nav>
+    </div>
+    <script rel="script" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script rel="script" src="{% static 'plugins/bootstrap-4.6.2-dist/js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>

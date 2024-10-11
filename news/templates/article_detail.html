@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ data.title }}</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-4.6.2-dist/css/bootstrap.min.css' %}" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 50px">
+            <span class="navbar-brand"><img src="{% static 'img/icon.ico' %}" width="20" height="20" alt="...">农业新闻</span>
+            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarScroll">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-secondary"><a href="/sum_week/" style="color: #3c3c3c">每周总结</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/agdaily/" style="color: #3c3c3c">Agdaily</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/agriculture/" style="color: #3c3c3c">Agriculture</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/agropages/" style="color: #3c3c3c">Agropages</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/agupdate/" style="color: #3c3c3c">Agupdate</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/asiapathways/" style="color: #3c3c3c">Asiapathways</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/bbc/" style="color: #3c3c3c">Bbc</a></button>
+                </div>
+            </div>
+        </nav>
+        <button><a href="/{{ data.site_name }}/">返回列表</a></button>
+        <table class="table table-striped table-hover table-bordered">
+            <tbody class="text-center">
+                <tr>
+                    <th style="width: 5%" class="align-middle">链接</th>
+                    <td><a href="/{{ data.url }}/">{{ data.url }}</a></td>
+                </tr>
+                <tr>
+                    <th rowspan="2" style="width: 5%" class="align-middle">标题</th>
+                    <td>{{ data.title }}</td>
+                </tr>
+                <tr>
+                    <td>{{ data.title_en }}</td>
+                </tr>
+                <tr>
+                    <th style="width: 5%" class="align-middle">类别</th>
+                    <td>{{ data.class_name }}</td>
+                </tr>
+                <tr>
+                    <th style="width: 5%" class="align-middle">摘要</th>
+                    <td>{{ data.summarize }}</td>
+                </tr>
+                <tr>
+                    <th style="width: 5%" class="align-middle">类别</th>
+                    <td>{{ data.class_name }}</td>
+                </tr>
+                <tr>
+                    <th style="width: 5%" class="align-middle">内容</th>
+                    <td class="text-left">
+                        {% for p in content %}
+                            <p style="text-indent: 2em">{{ p }}</p>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th style="width: 5%" class="align-middle">发表时间</th>
+                    <td>{{ data.publish_time }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <nav><ul class="pagination">{{ page_html_string }}</ul></nav>
+    </div>
+<script rel="script" src="{% static "js/jquery-3.6.0.min.js "%}"></script>
+<script rel="script" src="{% static 'plugins/bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+{#内容#}
+{#<div class="container">#}
+{#    <a class="glyphicon glyphicon-th" aria-hidden="true" style="font-size: 15px" href="/{{ data.site_name }}/">文章列表</a>#}
+{#    <table class="table-striped table-condensed table-hover" border="1">#}
+{#        <tbody class="text-center">#}
+{#            <tr>#}
+{#                <th class="text-center" style="width: 80px">链接</th>#}
+{#                <td><a href="{{ data.url }}">{{ data.url }}</a></td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th class="text-center" style="width: 80px" rowspan="2">标题</th>#}
+{#                <td>{{ data.title }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <td>{{ data.title_en }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th class="text-center" style="width: 80px">类别</th>#}
+{#                <td>{{ data.class_name }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th class="text-center" style="width: 80px">摘要</th>#}
+{#                <td>{{ data.summarize }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th class="text-center" style="width: 80px">内容</th>#}
+{#                <td class="text-left">#}
+{#                    {% for p in content %}#}
+{#                        <p style="text-indent: 2em">{{ p }}</p>#}
+{#                    {% endfor %}#}
+{#                </td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th class="text-center" style="width: 80px">发表时间</th>#}
+{#                <td>{{ data.publish_time }}</td>#}
+{#            </tr>#}
+{#        </tbody>#}
+{#    </table>#}
+{#</div>#}
+</body>
+</html>

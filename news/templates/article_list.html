@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-4.6.2-dist/css/bootstrap.min.css' %}" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{% static 'img/icon.ico' %}">
+    <title>农业新闻速递</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="height: 50px">
+            <span class="navbar-brand"><img src="{% static 'img/icon.ico' %}" width="20" height="20" alt="...">农业新闻</span>
+            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarScroll">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-secondary"><a href="/sum_week/" style="color: #3c3c3c">每周总结</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/agdaily/" style="color: #3c3c3c">Agdaily</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/agriculture/" style="color: #3c3c3c">Agriculture</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/agropages/" style="color: #3c3c3c">Agropages</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/agupdate/" style="color: #3c3c3c">Agupdate</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/asiapathways/" style="color: #3c3c3c">Asiapathways</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="/bbc/" style="color: #3c3c3c">Bbc</a></button>
+                </div>
+                <form class="d-flex">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                            选择时间
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="?search={{ search_data }}&time=0">今天</a>
+                            <a class="dropdown-item" href="?search={{ search_data }}&time=1">3天内</a>
+                            <a class="dropdown-item" href="?search={{ search_data }}&time=2">一周内</a>
+                            <a class="dropdown-item" href="?search={{ search_data }}&time=3">一月内</a>
+                            <a class="dropdown-item" href="?search={{ search_data }}&time=4">一年内</a>
+                            <a class="dropdown-item" href="?search={{ search_data }}&time=5">全部</a>
+                        </div>
+                    </div>
+                    <input class="form-control mr-2" type="text" placeholder="Search" aria-label="Search" name="search" id="search" value="{{ search_data }}">
+                    <button class="btn btn-outline-success" type="submit" style="width: 100px">搜索</button>
+                </form>
+            </div>
+        </nav>
+        <table class="table table-striped table-hover table-bordered" style="height: 25px">
+            <thead class="text-center">
+            <tr><th></th></tr>
+            <tr><th></th></tr>
+            <tr class="text-center">
+                <th style="width: 5%">来源</th>
+                <th>标题</th>
+                <th style="width: 5%">分类</th>
+                <th style="width: 5%">作者</th>
+                <th style="width: 5%">日期</th>
+                <th style="width: 5%">操作</th>
+            </tr>
+            </thead>
+            <tbody class="text-center" style="width: 30px">
+            {% for e in all_data %}
+                <tr>
+                    <td style="font-size: 15px" rowspan="2" class="align-middle">{{ e.site_name }}</td>
+                    <td style="font-size: 15px" class="align-middle">{{ e.title }}</td>
+                    <td style="font-size: 15px" rowspan="2" class="align-middle">{{ e.class_name }}</td>
+                    <td style="font-size: 15px" rowspan="2" class="align-middle">{{ e.author }}</td>
+                    <td style="font-size: 15px" rowspan="2" class="align-middle">{{ e.created_at }}</td>
+                    <td style="font-size: 15px" rowspan="2" class="align-middle"><a class="btn btn-primary btn-xs" href="/detail/?id={{ e.id }}">详细</a></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 15px" class="align-middle">{{ e.title_en }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <nav><ul class="pagination">{{ page_html_string }}</ul></nav>
+    </div>
+    <script rel="script" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script rel="script" src="{% static 'plugins/bootstrap-4.6.2-dist/js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>
